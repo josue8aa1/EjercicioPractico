@@ -1,0 +1,257 @@
+<div class="container mt-5">
+    <div class="row">
+        <div class="col-lg-8 offset-lg-2">
+            <div class="card">
+                <div class="card-body">
+                    <h3 class="titulo">PROSPECTOS</h3>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="row row mt-3" *ngIf="mostrarLista">
+        <div class="col">
+            <div class="card">
+                <div class="card-body">
+                    <h5 class="titulo mb-4">{{ accion | uppercase }} PROSPECTOS</h5>
+
+                    <form [formGroup]="form" (ngSubmit)="guardarProspecto()">
+                        <div class="row mb-2">
+                            <div class="col-9"></div>
+                            <div class="col">
+                                <div class="d-grid gap-2">
+                                    <button type="button" class="btn btn-primary btn-lg" (click)="mostrarPropesto()">
+                                        <i class="fas fa-list"></i>&nbsp; Mostrar Prospesto
+                                    </button>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="row">        
+                            <div class="col">
+                                <label for="basic-url" class="form-label" style="font-weight: bold">Nombre</label>
+                                <div class="input-group input-group-lg mb-3">
+                                    <input formControlName="nombre" type="text" class="form-control"
+                                    placeholder="Nombre" />
+                                </div>
+                            </div>
+
+                            <div class="col" >
+                                <label for="basic-url" class="form-label" style="font-weight: bold">Primer
+                                    Apellido</label>
+                                <div class="input-group input-group-lg mb-3" >
+                                    <input formControlName="primerApellido" type="text" class="form-control"
+                                        placeholder="Primer Apellido"  />
+                                </div>
+                            </div>
+                            <div class="col">
+                                <label for="basic-url" class="form-label" style="font-weight: bold">Segundo
+                                    Apellido</label>
+                                <div class="input-group input-group-lg mb-3">
+                                    <input formControlName="segundoApellido" type="text" class="form-control"
+                                        placeholder="Segundo Apellido" />
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="row">
+                            <div class="col">
+                                <label for="basic-url" class="form-label" style="font-weight: bold">Calle</label>
+                                <div class="input-group input-group-lg mb-3">
+                                    <input formControlName="calle" type="text" class="form-control"
+                                        placeholder="Calle" />
+                                </div>
+                            </div>
+                            <div class="col">
+                                <label for="basic-url" class="form-label" style="font-weight: bold">Número</label>
+                                <div class="input-group input-group-lg mb-3">
+                                    <input formControlName="numero" type="number" class="form-control"
+                                        placeholder="Numero" />
+                                </div>
+                            </div>
+                            <div class="col">
+                                <label for="basic-url" class="form-label" style="font-weight: bold">Código
+                                    postal</label>
+                                <div class="input-group input-group-lg mb-3">
+                                    <input formControlName="codigoPostal" type="number" class="form-control"
+                                        placeholder="Codigo Postal" />
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="row">
+
+                            <div class="col">
+                                <label for="basic-url" class="form-label" style="font-weight: bold">
+                                    Teléfono</label>
+                                <div class="input-group input-group-lg mb-3">
+                                    <input formControlName="telefono" type="number" class="form-control"
+                                        placeholder="Telefono" />
+                                </div>
+                            </div>
+
+                            <div class="col">
+                                <label for="basic-url" class="form-label" style="font-weight: bold">RFC</label>
+                                <div class="input-group input-group-lg mb-3">
+                                    <input formControlName="rfc" type="text" class="form-control" placeholder="RFC" />
+                                </div>
+                            </div>
+
+
+
+                            <div class="col">
+                                <label for="basic-url" class="form-label" style="font-weight: bold">Estatus del
+                                    prospecto</label>
+                                <div class="select">
+                                    <select class='form-control' id="selectOptions" [formControl]="select1Control"
+                                        [(ngModel)]="select1"
+                                        style="padding: 0.5rem 1rem; font-size: 1.25rem; border-radius: 0.3rem;">
+                                        <option *ngFor="let opt of listEstatus" [selected]="opt === select1"
+                                            [value]="opt">
+                                            {{ opt }}
+                                        </option>
+                                    </select>
+                                </div>
+                            </div>
+
+
+                            <div class="col" style="text-align: center;">
+                                <label for="basic-url" class="form-label" style="font-weight: bold">
+                                    </label>
+                                <div class="d-grid gap-1">
+                                    <button type="button" class="btn btn-warning btn-lg" (click)="open(mymodal)" style="    margin-top: 6px;">
+                                        <i class="fas fa-add"></i>&nbsp; Agregar documento
+                                    </button>
+                                </div>
+
+
+                            </div>
+
+                        </div>
+
+                        <div class="row">
+                            <div class="col">
+                                <label for="basic-url" class="form-label"
+                                    style="font-weight: bold">Observaciones</label>
+                                <div class="input-group input-group-lg mb-3">
+                                    <input formControlName="observaciones" type="text" class="form-control"
+                                        placeholder="observaciones" />
+                                </div>
+                            </div>
+                            
+
+                        </div>
+
+
+                        <div class="row mb-4">                          
+                            <div class="col offset-md-9" style="text-align: center;">                             
+                                <div class="d-grid gap-1">
+                                    <button [disabled]="this.form.invalid" type="submit" class="btn btn-success btn-lg">
+                                        <i class="fas fa-save"></i>&nbsp; Guardar
+                                    </button>
+                                </div>
+                            </div>
+
+                        </div>
+                    
+                        <div class="row">
+
+                            <h5 class="titulo">LISTADO DE DOCUMENTOS</h5>
+                            <table class="table">
+                                <tr>
+                                    <th scope="col">Nombre</th>
+                                    <th scope="col">Editar</th>
+                                    <th scope="col">Eliminar</th>
+
+                                </tr>
+                                <tbody>
+                                    <tr *ngFor="let docu of documentos">
+                                        <td>{{ docu.nombreDocumento }}</td>
+                                        <td>
+                                            <i (click)="editarProspecto(docu)" class="far fa-edit text-info"></i>
+                                        </td>
+                                        <td>
+                                            <i (click)="eliminarProspecto(docu.id)"
+                                                class="far fa-trash-alt text-danger"></i>
+                                        </td>
+                                    </tr>
+                                </tbody>
+                            </table>
+
+                        </div>
+
+                      
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="row row mt-3" *ngIf="!mostrarLista">
+        <div class="card">
+            <div class="card-body">
+                <div class="row mb-5">
+                    <div class="col-9"></div>
+                    <div class="col">
+                        <div class="d-grid gap-2">
+                            <button type="button" class="btn btn-success btn-lg" (click)="add()">
+                                <i class="fas fa-plus"></i>&nbsp; Agregar prospecto
+                            </button>
+                        </div>
+                    </div>
+                </div>
+
+                <h5 class="titulo">LISTADO DE PROSPECTOS</h5>
+                <table class="table">
+                    <tbody>
+                        <tr *ngFor="let Prospecto of listProspecto" [ngClass]="cambiaColorEstatus(Prospecto)">
+                            <td>{{ Prospecto.nombre }}</td>
+                            <td>{{ Prospecto.primerApellido }}</td>
+                            <td>{{ Prospecto.segundoApellido }}</td>
+                            <td>{{ Prospecto.estatus }}</td>
+                            <td>
+                                <i (click)="editarProspecto(Prospecto)" class="far fa-edit text-info"></i>
+                            </td>
+                            <td>
+                                <i (click)="eliminarProspecto(Prospecto.id)" class="far fa-trash-alt text-danger"></i>
+                            </td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+
+    <ng-template #mymodal let-modal>
+        <div class="modal-header">
+            <h4 class="modal-title" id="modal-basic-title">Documentos</h4>
+            <button type="button" class="close" aria-label="Close" (click)="modal.dismiss('Cross click')">
+                <span aria-hidden="true">×</span>
+            </button>
+        </div>
+        <div class="modal-body">
+            <form [formGroup]="form">
+                <div class="row">
+                    <div class="col">
+                        <label for="basic-url" class="form-label" style="font-weight: bold">Nombre Documento</label>
+                        <div class="input-group input-group-lg mb-3">
+                            <input formControlName="nombredocumento" type="text" class="form-control"
+                                placeholder="Nombre documento" readonly [(ngModel)]="nombredocumento" />
+                        </div>
+                    </div>
+                </div>
+
+                <div class="row">
+                    <div class="col text-center">
+                        <input class="form-control" type="file" (change)="onChange($event)">
+                    </div>
+                </div>
+            </form>
+        </div>
+        <div class="modal-footer">
+            <button type="submit" class="btn btn-warning btn-lg" (click)="agregarDocumento(nombredocumento)">
+                <i class="fas fa-plus"></i>&nbsp; Agregar
+            </button>
+        </div>
+    </ng-template>
+</div>
